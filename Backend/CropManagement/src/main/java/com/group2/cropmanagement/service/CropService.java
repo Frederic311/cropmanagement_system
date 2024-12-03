@@ -1,6 +1,7 @@
 package com.group2.cropmanagement.service;
 
-import Group1.Crop_Management.Model.Crop;
+
+import com.group2.cropmanagement.model.Crop;
 
 import java.util.List;
 

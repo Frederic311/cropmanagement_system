@@ -1,7 +1,7 @@
 package com.group2.cropmanagement.service.impl;
 
-import Group1.Crop_Management.Model.FarmTask;
-import Group1.Crop_Management.Service.FarmTaskService;
+import com.group2.cropmanagement.model.FarmTask;
+import com.group2.cropmanagement.service.FarmTaskService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

@@ -1,6 +1,6 @@
 package com.group2.cropmanagement.repository;
 
-import Group1.Crop_Management.Model.Crop;
+import com.group2.cropmanagement.model.Crop;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

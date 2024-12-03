@@ -37,6 +37,14 @@ public class Farm {
     @JsonManagedReference
     private List<FarmTask> tasks;
 
+    @OneToMany(mappedBy = "farm")
+    @JsonManagedReference
+    private List<Item> items;
+
+    @OneToMany(mappedBy = "farm")
+    @JsonManagedReference
+    private List<Harvest> harvests;
+
     @ManyToOne
     @JoinColumn(name = "user_id")
     @JsonBackReference

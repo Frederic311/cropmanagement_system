@@ -5,6 +5,8 @@ import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Entity
 @Data
 @NoArgsConstructor
@@ -19,6 +21,10 @@ public class Crop {
 
     @Column
     private String cropDescription;
+
+    @ManyToMany(mappedBy = "crops")
+    @JsonBackReference
+    private List<Harvest> harvests;
 
     @ManyToOne
     @JoinColumn(name = "farm_id")
