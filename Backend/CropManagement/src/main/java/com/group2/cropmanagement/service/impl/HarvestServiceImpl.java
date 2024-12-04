@@ -29,11 +29,7 @@ public class HarvestServiceImpl implements HarvestService {
         newHarvest.setTitle(harvest.getTitle());
         newHarvest.setHarvestDate(harvest.getHarvestDate());
         newHarvest.setFarm(farmRepository.findById(harvest.getFarmId()).orElse(null));
-        List<Crop> crops = newHarvest.getCrops();
-        for(Long cropId : harvest.getCropIds()) {
-            crops.add(cropRepository.findById(cropId).orElse(null));
-        }
-        newHarvest.setCrops(crops);
+        newHarvest.setCrop(cropRepository.findById(harvest.getCropId()).orElse(null));
         return harvestRepository.save(newHarvest);
     }
 
@@ -55,15 +51,15 @@ public class HarvestServiceImpl implements HarvestService {
     @Override
     public Harvest updateHarvest(Long id, HarvestDTO harvest) {
         Harvest existingHarvest = harvestRepository.findById(id).orElse(null);
-        existingHarvest.setHarvestDate(harvest.getHarvestDate());
-        existingHarvest.setTitle(harvest.getTitle());
-        existingHarvest.setFarm(farmRepository.findById(harvest.getFarmId()).orElse(null));
-        List<Crop> crops = existingHarvest.getCrops();
-        for(Long cropId : harvest.getCropIds()) {
-            crops.add(cropRepository.findById(cropId).orElse(null));
+        if(existingHarvest != null) {
+            existingHarvest.setHarvestDate(harvest.getHarvestDate());
+            existingHarvest.setTitle(harvest.getTitle());
+            existingHarvest.setFarm(farmRepository.findById(harvest.getFarmId()).orElse(null));
+            existingHarvest.setCrop(cropRepository.findById(harvest.getCropId()).orElse(null));
+
+            return harvestRepository.save(existingHarvest);
         }
-        existingHarvest.setCrops(crops);
-        return harvestRepository.save(existingHarvest);
+        return null;
     }
 
     @Override

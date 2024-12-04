@@ -26,12 +26,7 @@ public class Crop {
     @Column
     private String cropDescription;
 
-    @ManyToMany(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
-    @JoinTable(
-            name = "crops_harvests",
-            joinColumns = @JoinColumn(name = "crop_id"),
-            inverseJoinColumns = @JoinColumn(name = "harvest_id")
-    )
+    @OneToMany(mappedBy = "crop")
     @JsonBackReference
     private List<Harvest> harvests;
 

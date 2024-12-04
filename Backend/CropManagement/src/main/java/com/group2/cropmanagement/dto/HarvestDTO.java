@@ -15,5 +15,5 @@ public class HarvestDTO {
 
     private Long farmId;
 
-    private List<Long> cropIds;
+    private Long cropId;
 }

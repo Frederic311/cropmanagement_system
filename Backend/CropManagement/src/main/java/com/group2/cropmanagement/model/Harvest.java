@@ -27,9 +27,10 @@ public class Harvest {
     @Column
     private LocalDate harvestDate;
 
-    @ManyToMany(mappedBy = "harvests")
+    @ManyToOne
+    @JoinColumn(name = "crop_id")
     @JsonManagedReference
-    private List<Crop> crops;
+    private Crop crop;
 
     @ManyToOne
     @JoinColumn(name = "farm_id")
