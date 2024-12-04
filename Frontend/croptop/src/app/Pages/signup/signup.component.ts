@@ -26,13 +26,17 @@ export class SignupComponent {
       fullName: this.name,
       email: this.email,
       password: this.password,
-      role: 'farmer'
-    };
+      role: 'FARMER'
+    }
 
-    this.authService.saveUser(userDTO).subscribe(
+    this.authService.saveUser (userDTO).subscribe(
       response => {
-        this.messageService.add({ severity: 'success', summary: 'Success', detail: 'User registered successfully!' });
-        this.router.navigate(['/login']);
+        this.messageService.add({ severity: 'success', summary: 'Success', detail: 'User  registered successfully! Now Login' });
+
+        // Show the message for 1.5 seconds before navigating to the login page
+        setTimeout(() => {
+          this.router.navigate(['/login']);
+        }, 2000); // 1500 milliseconds = 1.5 seconds
       },
       error => {
         this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Error registering user: ' + error.message });

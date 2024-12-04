@@ -34,6 +34,6 @@ export class AuthService {
   }
 
   saveUser(userDTO: { fullName: string, email: string, password: string, role: string }): Observable<any> {
-    return this.http.post(`http://localhost:8080/api/auth/save`, userDTO);
+    return this.http.post(`http://localhost:8080/api/auth/add-user`, userDTO);
   }
 }
