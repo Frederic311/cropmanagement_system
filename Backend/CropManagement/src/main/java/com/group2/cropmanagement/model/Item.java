@@ -8,7 +8,10 @@ import lombok.NoArgsConstructor;
 @Entity
 @Data
 @NoArgsConstructor
-@Table(name ="items")
+@Table(
+        name = "items",
+        uniqueConstraints = @UniqueConstraint(columnNames = {"name", "farm_id"})
+)
 public class Item {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,6 +25,9 @@ public class Item {
 
     @Column
     private String category;
+
+    @Column
+    private Integer quantity;
 
     @ManyToOne
     @JoinColumn(name = "farm_id")

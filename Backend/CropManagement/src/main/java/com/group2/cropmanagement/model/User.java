@@ -1,5 +1,6 @@
 package com.group2.cropmanagement.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -37,6 +38,10 @@ public class User implements UserDetails {
 
 	@Column
 	private LocalDate createdDate;
+
+	@OneToMany(mappedBy = "user")
+	@JsonManagedReference
+	private List<Farm> farms;
 
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {

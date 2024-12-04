@@ -5,17 +5,21 @@ import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 @Entity
 @Data
 @NoArgsConstructor
-@Table(name = "tasks")
+@Table(
+        name = "tasks",
+        uniqueConstraints = @UniqueConstraint(columnNames = {"name", "farm_id"})
+)
 public class FarmTask {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
 
     @Column
     private String name;
@@ -24,7 +28,7 @@ public class FarmTask {
     private String description;
 
     @Column
-    private Date deadline;
+    private LocalDate deadline;
 
     @Column
     private Boolean isCompleted;

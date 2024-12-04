@@ -11,19 +11,21 @@ import java.util.List;
 @Entity
 @Data
 @NoArgsConstructor
-@Table(name = "farms")
+@Table(
+        name = "farms",
+        uniqueConstraints = @UniqueConstraint(columnNames = {"name", "user_id"})
+)
 public class Farm {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(unique = true)
+    @Column
     private String name;
 
     @Column
     private String description;
-
 
     @OneToMany(mappedBy = "farm")
     @JsonManagedReference

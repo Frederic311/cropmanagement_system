@@ -63,7 +63,7 @@ public class UserController {
 	}
 
 
-	@PostMapping("/auth/save")
+	@PostMapping("/auth/add-user")
 	public ResponseEntity<?> saveUser( @RequestBody UserDTO userDTO) {
 		try {
 			UserDTO savedUser = userService.saveUser(userDTO);
@@ -77,21 +77,13 @@ public class UserController {
 
 
 
-
-	@GetMapping("/user/test")
-	public TextResponse test() {
-		return new TextResponse("Hello World");
-	}
-
-
 	@PutMapping("/user/update/{id}")
 	public User updateUser(@PathVariable Long id, @RequestBody UserDTO userDTO) {
 		return userService.updateUser(id, userDTO);
 
 	}
 
-	//@DeleteMapping("/user/delete/{id}")
-	@PutMapping("/user/delete/{id}")
+	@DeleteMapping("/user/delete/{id}")
 	public TextResponse deleteUser(@PathVariable Long id) {
 		userService.delete(id);
 		return new TextResponse("User deleted successfully");
@@ -105,18 +97,6 @@ public class UserController {
 	@GetMapping("/user/all-users")
 	public List<User> getAllUsers() {
 		return userService.allUsers();
-	}
-
-	@PostMapping("/user/save")
-	public ResponseEntity<?> addUser(@RequestBody UserDTO userDTO) {
-		try {
-			UserDTO savedUser = userService.saveUser(userDTO);
-			return ResponseEntity.ok(savedUser);
-		} catch (IllegalArgumentException e) {
-			return ResponseEntity.status(HttpStatus.CONFLICT).body(e.getMessage());
-		} catch (Exception e) {
-			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("An error occurred while saving the user.");
-		}
 	}
 
 }

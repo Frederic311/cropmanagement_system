@@ -1,6 +1,7 @@
 package com.group2.cropmanagement.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -10,7 +11,10 @@ import java.util.List;
 @Entity
 @Data
 @NoArgsConstructor
-@Table(name = "crops")
+@Table(
+        name = "crops",
+        uniqueConstraints = @UniqueConstraint(columnNames = {"crop_name", "farm_id"})
+)
 public class Crop {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,7 +26,7 @@ public class Crop {
     @Column
     private String cropDescription;
 
-    @ManyToMany(mappedBy = "crops")
+    @OneToMany(mappedBy = "crop")
     @JsonBackReference
     private List<Harvest> harvests;
 
