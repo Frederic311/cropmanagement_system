@@ -12,7 +12,7 @@ import java.util.List;
 @Entity
 @Data
 @NoArgsConstructor
-@Table(name = "harvest")
+@Table(name = "harvests")
 public class Harvest {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,12 +21,7 @@ public class Harvest {
     @Column
     private LocalDate harvestDate;
 
-    @ManyToMany(cascade = CascadeType.DETACH, fetch = FetchType.LAZY)
-    @JoinTable(
-            name = "harvest_crops",
-            joinColumns = @JoinColumn(name = "harvest_id"),
-            inverseJoinColumns = @JoinColumn(name = "crop_id")
-    )
+    @ManyToMany(mappedBy = "harvests")
     @JsonManagedReference
     private List<Crop> crops;
 
