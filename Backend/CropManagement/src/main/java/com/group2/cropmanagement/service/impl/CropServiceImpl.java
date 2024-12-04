@@ -44,7 +44,7 @@ public class CropServiceImpl implements CropService {
 
     @Override
     public List<Crop> getCropsByFarmId(Long id) {
-        return cropRepository.findByFarms_Id(id);
+        return cropRepository.findCropByFarm(farmRepository.findById(id).orElse(null));
     }
 
     @Override
