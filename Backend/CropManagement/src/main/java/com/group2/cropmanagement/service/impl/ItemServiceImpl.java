@@ -26,6 +26,7 @@ public class ItemServiceImpl implements ItemService {
         newItem.setName(item.getName());
         newItem.setDescription(item.getDescription());
         newItem.setCategory(item.getCategory());
+        newItem.setQuantity(item.getQuantity());
         newItem.setFarm(farmRepository.findById(item.getFarmId()).orElse(null));
         return itemRepository.save(newItem);
     }
@@ -53,6 +54,7 @@ public class ItemServiceImpl implements ItemService {
             existingItem.setName(item.getName());
             existingItem.setDescription(item.getDescription());
             existingItem.setCategory(item.getCategory());
+            existingItem.setQuantity(item.getQuantity());
             existingItem.setFarm(farmRepository.findById(item.getFarmId()).orElse(null));
             return itemRepository.save(existingItem);
         }

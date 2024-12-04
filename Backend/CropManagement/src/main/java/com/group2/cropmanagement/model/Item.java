@@ -23,6 +23,9 @@ public class Item {
     @Column
     private String category;
 
+    @Column
+    private Integer quantity;
+
     @ManyToOne
     @JoinColumn(name = "farm_id")
     @JsonBackReference

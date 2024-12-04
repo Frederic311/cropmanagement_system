@@ -8,5 +8,6 @@ public class ItemDTO {
     private String name;
     private String description;
     private String category;
+    private Integer quantity;
     private Long farmId;
 }

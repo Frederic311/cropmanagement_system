@@ -15,12 +15,12 @@ public class ItemController {
     private ItemService itemService;
 
     @PostMapping("/add-item")
-    public Item addItem(ItemDTO item) {
+    public Item addItem(@RequestBody ItemDTO item) {
         return itemService.addItem(item);
     }
 
     @GetMapping("/{id}")
-    public Item getItem(Long id) {
+    public Item getItem(@PathVariable Long id) {
         return itemService.getItem(id);
     }
 
@@ -30,17 +30,17 @@ public class ItemController {
     }
 
     @GetMapping("/all-items/{id}")
-    public List<Item> getItemsByFarmId(Long id) {
+    public List<Item> getItemsByFarmId(@PathVariable Long id) {
         return itemService.getItemsByFarmId(id);
     }
 
     @PutMapping("/update/{id}")
-    public Item updateItem(Long id, ItemDTO item) {
+    public Item updateItem(@PathVariable Long id, @RequestBody ItemDTO item) {
         return itemService.updateItem(id, item);
     }
 
     @DeleteMapping("/delete/{id}")
-    public void deleteItem(Long id) {
+    public void deleteItem(@PathVariable Long id) {
         itemService.deleteItem(id);
     }
 }
