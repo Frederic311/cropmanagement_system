@@ -26,7 +26,7 @@ public class Crop {
     @Column
     private String cropDescription;
 
-    @ManyToMany(cascade = CascadeType.DETACH, fetch = FetchType.LAZY)
+    @ManyToMany(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
     @JoinTable(
             name = "crops_harvests",
             joinColumns = @JoinColumn(name = "crop_id"),
