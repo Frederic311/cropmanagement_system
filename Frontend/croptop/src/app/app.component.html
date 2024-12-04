@@ -1,1 +1,6 @@
+<app-left-sidebar
+  *ngIf="shouldShowSidebar()"
+  [isLeftSidebarCollapsed]="isLeftSidebarCollapsed()"
+  (changeIsLeftSidebarCollapsed)="changeIsLeftSidebarCollapsed($event)"
+></app-left-sidebar>
 <router-outlet></router-outlet>
