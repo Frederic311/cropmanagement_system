@@ -19,6 +19,9 @@ public class Harvest {
     private Long id;
 
     @Column
+    private String title;
+
+    @Column
     private LocalDate harvestDate;
 
     @ManyToMany(mappedBy = "harvests")

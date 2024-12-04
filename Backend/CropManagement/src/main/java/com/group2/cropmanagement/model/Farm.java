@@ -27,13 +27,7 @@ public class Farm {
     @Column
     private String description;
 
-
-    @ManyToMany(cascade = CascadeType.DETACH, fetch = FetchType.LAZY)
-    @JoinTable(
-            name = "farm_crops",
-            joinColumns = @JoinColumn(name = "farm_id"),
-            inverseJoinColumns = @JoinColumn(name = "crop_id")
-    )
+    @OneToMany(mappedBy = "farm")
     @JsonManagedReference
     private List<Crop> crops;
 

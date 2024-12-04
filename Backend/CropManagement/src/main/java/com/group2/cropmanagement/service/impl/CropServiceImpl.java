@@ -23,12 +23,7 @@ public class CropServiceImpl implements CropService {
         Crop newCrop = new Crop();
         newCrop.setCropName(crop.getCropName());
         newCrop.setCropDescription(crop.getCropDescription());
-        for(Long farmId : crop.getFarms_id()) {
-            Farm farm = farmRepository.findById(farmId).orElse(null);
-            List<Farm> farms = newCrop.getFarms();
-            farms.add(farm);
-            newCrop.setFarms(farms);
-        }
+        newCrop.setFarm(farmRepository.findById(crop.getFarm_id()).orElse(null));
         return cropRepository.save(newCrop);
     }
 
@@ -44,7 +39,7 @@ public class CropServiceImpl implements CropService {
 
     @Override
     public List<Crop> getCropsByFarmId(Long id) {
-        return cropRepository.findCropByFarm(farmRepository.findById(id).orElse(null));
+        return cropRepository.findCropsByFarm(farmRepository.findById(id).orElse(null));
     }
 
     @Override
@@ -53,12 +48,7 @@ public class CropServiceImpl implements CropService {
         if(cropToUpdate != null) {
             cropToUpdate.setCropName(crop.getCropName());
             cropToUpdate.setCropDescription(crop.getCropDescription());
-            for(Long farmId : crop.getFarms_id()) {
-                Farm farm = farmRepository.findById(farmId).orElse(null);
-                List<Farm> farms = cropToUpdate.getFarms();
-                farms.add(farm);
-                cropToUpdate.setFarms(farms);
-            }
+            cropToUpdate.setFarm(farmRepository.findById(crop.getFarm_id()).orElse(null));
             return cropRepository.save(cropToUpdate);
         }
         return null;

@@ -32,7 +32,8 @@ public class Crop {
     @JsonBackReference
     private List<Harvest> harvests;
 
-    @ManyToMany(mappedBy = "crops")
+    @ManyToOne
+    @JoinColumn(name = "farm_id")
     @JsonBackReference
-    private List<Farm> farms;
+    private Farm farm;
 }

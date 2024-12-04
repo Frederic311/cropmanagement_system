@@ -12,5 +12,5 @@ public class CropDTO {
 
     private String cropDescription;
 
-    private List<Long> farms_id;
+    private Long farm_id;
 }
