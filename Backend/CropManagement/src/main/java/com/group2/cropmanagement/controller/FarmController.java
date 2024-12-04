@@ -1,6 +1,7 @@
 package com.group2.cropmanagement.controller;
 
 import com.group2.cropmanagement.dto.FarmDTO;
+import com.group2.cropmanagement.dto.FarmSearchDTO;
 import com.group2.cropmanagement.model.Farm;
 import com.group2.cropmanagement.service.FarmService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +26,7 @@ public class FarmController {
     }
 
     @GetMapping("/all-farms/{id}")
-    public List<Farm> getAllFarms(@PathVariable Long id) {
+    public List<FarmSearchDTO> getAllFarms(@PathVariable Long id) {
         return farmService.getFarmsByUserId(id);
     }
 
