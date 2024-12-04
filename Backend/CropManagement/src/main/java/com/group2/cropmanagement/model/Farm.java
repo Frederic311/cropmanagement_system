@@ -11,21 +11,29 @@ import java.util.List;
 @Entity
 @Data
 @NoArgsConstructor
-@Table(name = "farms")
+@Table(
+        name = "farms",
+        uniqueConstraints = @UniqueConstraint(columnNames = {"name", "user"})
+)
 public class Farm {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(unique = true)
+    @Column
     private String name;
 
     @Column
     private String description;
 
 
-    @OneToMany(mappedBy = "farm")
+    @ManyToMany(cascade = CascadeType.DETACH, fetch = FetchType.LAZY)
+    @JoinTable(
+            name = "farm_crops",
+            joinColumns = @JoinColumn(name = "farm_id"),
+            inverseJoinColumns = @JoinColumn(name = "crop_id")
+    )
     @JsonManagedReference
     private List<Crop> crops;
 
