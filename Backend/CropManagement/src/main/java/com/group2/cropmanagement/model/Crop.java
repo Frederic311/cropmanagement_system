@@ -11,7 +11,10 @@ import java.util.List;
 @Entity
 @Data
 @NoArgsConstructor
-@Table(name = "crops")
+@Table(
+        name = "crops",
+        uniqueConstraints = @UniqueConstraint(columnNames = {"crop_name", "farm_id"})
+)
 public class Crop {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -12,7 +12,10 @@ import java.util.List;
 @Entity
 @Data
 @NoArgsConstructor
-@Table(name = "harvests")
+@Table(
+        name = "harvests",
+        uniqueConstraints = @UniqueConstraint(columnNames = {"title", "farm_id"})
+)
 public class Harvest {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -11,7 +11,10 @@ import java.util.Date;
 @Entity
 @Data
 @NoArgsConstructor
-@Table(name = "tasks")
+@Table(
+        name = "tasks",
+        uniqueConstraints = @UniqueConstraint(columnNames = {"name", "farm_id"})
+)
 public class FarmTask {
 
     @Id
