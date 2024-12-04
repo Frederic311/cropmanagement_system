@@ -4,6 +4,7 @@ import { LeftSidebarComponent } from './features/left-sidebar/left-sidebar.compo
 import { MainComponent } from './features/main/main.component';
 import { CommonModule } from '@angular/common';
 import { trigger, state, style, transition, animate } from '@angular/animations';
+import { AuthService } from '../../src/app/services/auth/auth.service';
 @Component({
   selector: 'app-root',
   standalone: true,
@@ -13,7 +14,7 @@ import { trigger, state, style, transition, animate } from '@angular/animations'
   animations: [ trigger('state', [ state('done', style({ opacity: 1 })), transition('* => done', [ animate('1s') ]) ]) ]
 })
 export class AppComponent implements OnInit {
-  constructor(private router: Router, private route: ActivatedRoute) {}
+  constructor(private router: Router, private route: ActivatedRoute,private authService: AuthService,) {}
   title = 'croptop';
   isLeftSidebarCollapsed = signal<boolean>(false);
   screenWidth = signal<number>(window.innerWidth);
@@ -36,4 +37,5 @@ export class AppComponent implements OnInit {
   shouldShowSidebar(): boolean { const currentRoute = this.router.url;
      return !(currentRoute === '/login' || currentRoute === '/signup' || currentRoute === '/'); }
 
+     logout() { this.authService.logout(); this.router.navigate(['/login']); }
 }

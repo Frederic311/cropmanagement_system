@@ -10,15 +10,26 @@ import { AuthService } from '../../services/auth/auth.service';
   standalone: true,
   imports: [FormsModule, ToastModule],
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.css'],
+  providers: [ MessageService]
 })
 export class LoginComponent {
   constructor(private router: Router,private authService: AuthService, private messageService: MessageService) {}
   email!: string;
   password!: string;
 
-  onSubmit() {
-    // Handle the form submission
+  onSubmit() { const authRequest = { email: this.email, password: this.password };
+   this.authService.login(authRequest).subscribe( response => {
+    this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Login successful! Redirecting...' });
+    // Show the message for 1.5 seconds before navigating to the dashboard page
+    setTimeout(() => { this.router.navigate(['/dashboard']); }, 1500);
+    // 1500 milliseconds = 1.5 seconds
+    }, error => { this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Error logging in: ' + error.message });
+  } ); }
+
+  navigateToSignup() {
+    this.router.navigate(['/signup']);
   }
-  navigateToSignup() { this.router.navigate(['/signup']); }
+
+  logout() { this.authService.logout(); this.router.navigate(['/login']); }
 }

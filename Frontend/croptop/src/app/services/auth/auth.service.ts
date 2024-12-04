@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';import { Observable } from 'rxjs';
+import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';import { Observable, tap } from 'rxjs';
 import { environment } from '../../environments/environment';
 
 @Injectable({
@@ -19,9 +19,9 @@ export class AuthService {
     });
   }
 
-  login(authRequest: { email: string, password: string }): Observable<any> {
-    return this.http.post(`http://localhost:8080/api/auth/login`, authRequest);
-  }
+  login(authRequest: { email: string, password: string }): Observable<any>
+  { return this.http.post(`http://localhost:8080/api/auth/login`, authRequest).pipe(
+     tap((response: any) => { localStorage.setItem('token', response.token); }) ); }
 
   getUserFromToken(token: string): Observable<any> {
     const headers = this.createAuthorizationHeader(token);
@@ -36,4 +36,8 @@ export class AuthService {
   saveUser(userDTO: { fullName: string, email: string, password: string, role: string }): Observable<any> {
     return this.http.post(`http://localhost:8080/api/auth/add-user`, userDTO);
   }
+  logout() {
+    localStorage.removeItem('token');
+  }
+
 }
