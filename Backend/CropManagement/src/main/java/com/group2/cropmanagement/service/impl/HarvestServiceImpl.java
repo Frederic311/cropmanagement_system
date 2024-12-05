@@ -28,6 +28,7 @@ public class HarvestServiceImpl implements HarvestService {
         Harvest newHarvest = new Harvest();
         newHarvest.setTitle(harvest.getTitle());
         newHarvest.setHarvestDate(harvest.getHarvestDate());
+        newHarvest.setQuantity(harvest.getQuantity());
         newHarvest.setFarm(farmRepository.findById(harvest.getFarmId()).orElse(null));
         newHarvest.setCrop(cropRepository.findById(harvest.getCropId()).orElse(null));
         return harvestRepository.save(newHarvest);
@@ -54,6 +55,7 @@ public class HarvestServiceImpl implements HarvestService {
         if(existingHarvest != null) {
             existingHarvest.setHarvestDate(harvest.getHarvestDate());
             existingHarvest.setTitle(harvest.getTitle());
+            existingHarvest.setQuantity(harvest.getQuantity());
             existingHarvest.setFarm(farmRepository.findById(harvest.getFarmId()).orElse(null));
             existingHarvest.setCrop(cropRepository.findById(harvest.getCropId()).orElse(null));
 

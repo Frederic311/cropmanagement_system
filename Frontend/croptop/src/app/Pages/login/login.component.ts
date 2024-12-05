@@ -24,6 +24,9 @@ export class LoginComponent {
     // Show the message for 1.5 seconds before navigating to the dashboard page
     setTimeout(() => { this.router.navigate(['/sidebar']); }, 1500);
     // 1500 milliseconds = 1.5 seconds
+
+    this.router.navigate(['/inventory']); //change to show defaultpage here
+
     }, error => { this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Error logging in: ' + error.message });
   } ); }
 

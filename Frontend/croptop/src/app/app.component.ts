@@ -1,5 +1,5 @@
-import { Component,HostListener, OnInit, signal } from '@angular/core';
-import { RouterOutlet,ActivatedRoute, Router } from '@angular/router';
+import { Component, HostListener, OnInit, signal, ViewEncapsulation } from '@angular/core';
+import { RouterOutlet, ActivatedRoute, Router } from '@angular/router';
 import { LeftSidebarComponent } from './features/left-sidebar/left-sidebar.component';
 import { MainComponent } from './features/main/main.component';
 import { CommonModule } from '@angular/common';
@@ -13,11 +13,12 @@ import { FooterComponent } from "./shared/footer/footer.component";
   standalone: true,
   imports: [RouterOutlet, LeftSidebarComponent, MainComponent, CommonModule, HeaderComponent, SidebarComponent, FooterComponent],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css',
-  animations: [ trigger('state', [ state('done', style({ opacity: 1 })), transition('* => done', [ animate('1s') ]) ]) ]
+  styleUrls: ['./app.component.css'],
+  encapsulation: ViewEncapsulation.None,
+  animations: [trigger('state', [state('done', style({ opacity: 1 })), transition('* => done', [animate('1s')])])]
 })
 export class AppComponent implements OnInit {
-  constructor(private router: Router, private route: ActivatedRoute,private authService: AuthService,) {}
+  constructor(private router: Router, private route: ActivatedRoute, private authService: AuthService,) { }
   title = 'croptop';
   isLeftSidebarCollapsed = signal<boolean>(false);
   screenWidth = signal<number>(window.innerWidth);
@@ -38,8 +39,10 @@ export class AppComponent implements OnInit {
   changeIsLeftSidebarCollapsed(isLeftSidebarCollapsed: boolean): void {
     this.isLeftSidebarCollapsed.set(isLeftSidebarCollapsed);
   }
-  shouldShowSidebar(): boolean { const currentRoute = this.router.url;
-     return !(currentRoute === '/login' || currentRoute === '/signup' || currentRoute === '/'); }
+  // shouldShowSidebar(): boolean { const currentRoute = this.router.url;
+  //    return !(currentRoute === '/login' || currentRoute === '/signup' || currentRoute === '/'); }
 
-     logout() { this.authService.logout(); this.router.navigate(['/login']); }
+  logout() { this.authService.logout(); this.router.navigate(['/login']); }
+
+  showSharedComponents(): boolean { const currentRoute = this.router.url; return !(currentRoute === '/login' || currentRoute === '/signup' || currentRoute === '/'); }
 }
