@@ -11,7 +11,10 @@ import java.util.List;
 @Entity
 @Data
 @NoArgsConstructor
-@Table(name = "crops")
+@Table(
+        name = "crops",
+        uniqueConstraints = @UniqueConstraint(columnNames = {"crop_name", "farm_id"})
+)
 public class Crop {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,12 +26,7 @@ public class Crop {
     @Column
     private String cropDescription;
 
-    @ManyToMany(cascade = CascadeType.DETACH, fetch = FetchType.LAZY)
-    @JoinTable(
-            name = "crops_harvests",
-            joinColumns = @JoinColumn(name = "crop_id"),
-            inverseJoinColumns = @JoinColumn(name = "harvest_id")
-    )
+    @OneToMany(mappedBy = "crop")
     @JsonBackReference
     private List<Harvest> harvests;
 

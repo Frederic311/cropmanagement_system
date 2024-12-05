@@ -13,7 +13,7 @@ import java.util.List;
 @NoArgsConstructor
 @Table(
         name = "farms",
-        uniqueConstraints = @UniqueConstraint(columnNames = {"name", "user"})
+        uniqueConstraints = @UniqueConstraint(columnNames = {"name", "user_id"})
 )
 public class Farm {
 

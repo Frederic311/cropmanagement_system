@@ -14,7 +14,7 @@ public class FarmTaskController {
     @Autowired
     private FarmTaskService farmTaskService;
 
-    @PostMapping("/api/add-farm-task")
+    @PostMapping("/add-farm-task")
     public FarmTask addFarmTask(@RequestBody FarmTaskDTO farmTask){
         return farmTaskService.createFarmTask(farmTask);
     }

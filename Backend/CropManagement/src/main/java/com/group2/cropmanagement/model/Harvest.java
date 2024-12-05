@@ -12,7 +12,10 @@ import java.util.List;
 @Entity
 @Data
 @NoArgsConstructor
-@Table(name = "harvests")
+@Table(
+        name = "harvests",
+        uniqueConstraints = @UniqueConstraint(columnNames = {"title", "farm_id"})
+)
 public class Harvest {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,9 +27,10 @@ public class Harvest {
     @Column
     private LocalDate harvestDate;
 
-    @ManyToMany(mappedBy = "harvests")
+    @ManyToOne
+    @JoinColumn(name = "crop_id")
     @JsonManagedReference
-    private List<Crop> crops;
+    private Crop crop;
 
     @ManyToOne
     @JoinColumn(name = "farm_id")

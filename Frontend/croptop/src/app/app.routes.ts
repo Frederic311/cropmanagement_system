@@ -8,13 +8,12 @@ import { FarmComponent } from './Pages/farm/farm.component';
 // import { MainComponent } from './features/main/main.component';
 // import { FarmsComponent } from './Pages/farms/farms.component';
 
+
 export const routes: Routes = [
   { path: '', component: LandingpageComponent },
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignupComponent },
-  { path: 'main', component: MainComponent},
-  { path: 'farm', component: FarmComponent},
- 
+  { path: 'sidebar', component: LeftSidebarComponent },
 
   // { path: 'farm', component: FarmsComponent}
 

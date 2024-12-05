@@ -14,3 +14,23 @@
   }
 
   body { font-family: 'Poppins', sans-serif; }
+
+  @media (max-width: 768px) {
+    .login-container, .signup-container {
+      padding: 15px;
+    }
+
+    .btn {
+      padding: 8px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .login-container, .signup-container {
+      padding: 10px;
+    }
+
+    .btn {
+      padding: 6px;
+    }
+  }
