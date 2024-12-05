@@ -1,97 +1,88 @@
-import { Component, CUSTOM_ELEMENTS_SCHEMA, ViewEncapsulation } from '@angular/core';
+import { Component, CUSTOM_ELEMENTS_SCHEMA, ViewEncapsulation, OnInit} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import Swal from 'sweetalert2';
 import { DialogModule } from 'primeng/dialog';
 import { FormsModule } from '@angular/forms';
+import {Farm} from '../../models/farm.model'
+import { FarmService } from '../../services/farm/farm.service';
 
-interface Farm {
+
+
+interface Farms {
   id: number;
   name: string;
-  location: string;
-  dateEstablished: string;
-  size: string;
-  owner: string;
+  description: string;
+  deadline: string;
   picture: string;
   showMenu?: boolean;
 }
 
+
+
 @Component({
   selector: 'app-farm',
   standalone: true,
-  imports: [CommonModule, RouterModule, DialogModule, FormsModule],
+  imports: [DialogModule, FormsModule, CommonModule],
   templateUrl: './farm.component.html',
-  styleUrls: ['./farm.component.css'],
-  encapsulation: ViewEncapsulation.ShadowDom,
-  schemas: [CUSTOM_ELEMENTS_SCHEMA]
+  styleUrls: ['./farm.component.css']
 })
-export class FarmComponent {
-  farms: Farm[] = [];
-  newFarm: Farm = { id: 0, name: '', location: '', dateEstablished: '', size: '', owner: '', picture: '' };
-  selectedFarm: Farm = { id: 0, name: '', location: '', dateEstablished: '', size: '', owner: '', picture: '' };
+export class FarmComponent implements OnInit {
+  farms: Farms[] = [];
+  newFarm: Farms = { id: 0, name: '', description: '', deadline: '', picture: '' };
+  selectedFarm: Farms = { id: 0, name: '', description: '', deadline: '', picture: '' };
 
   isAddFarmModalOpen = false;
   isEditFarmModalOpen = false;
 
-  openAddFarmModal() {
-    this.newFarm = { id: Date.now(), name: '', location: '', dateEstablished: '', size: '', owner: '', picture: '' };
+  constructor(private farmService: FarmService) {}
+
+  ngOnInit(): void {
+    this.getAllFarms();
+  }
+
+  getAllFarms(): void {
+    this.farmService.getAllFarms().subscribe(farms => {
+      this.farms = farms;
+    });
+  }
+
+  openAddFarmModal(): void {
+    this.newFarm = { id: Date.now(), name: '', description: '', deadline: '', picture: '' };
     this.isAddFarmModalOpen = true;
   }
 
-  addFarm() {
-    this.farms.push(this.newFarm);
-    this.closeModal();
+  addFarm(): void {
+    this.farmService.addFarm(this.newFarm).subscribe(() => {
+      this.getAllFarms();
+      this.closeModal();
+    });
   }
 
-  openEditFarmModal(farm: Farm) {
+  openEditFarmModal(farm: Farms): void {
     this.selectedFarm = { ...farm };
     this.isEditFarmModalOpen = true;
   }
 
-  updateFarm() {
-    const index = this.farms.findIndex(farm => farm.id === this.selectedFarm.id);
-    if (index !== -1) {
-      this.farms[index] = { ...this.selectedFarm };
-    }
-    this.closeModal();
-  }
-
-  deleteFarm(farm: Farm) {
-    Swal.fire({
-      title: 'Are you sure?',
-      text: 'Do you really want to delete this farm?',
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonText: 'Yes, delete it!',
-      cancelButtonText: 'No, keep it',
-      width: '450', // Adjust the size as per your requirement
-      customClass: {
-        container: 'custom-swal',
-        title: 'custom-swal-title',
-        htmlContainer: 'custom-swal-text',
-        actions: 'custom-swal-buttons',
-        confirmButton: 'swal2-confirm',
-        cancelButton: 'swal2-cancel'
-      }
-    }).then((result: { isConfirmed: any; }) => {
-      if (result.isConfirmed) {
-        this.farms = this.farms.filter(f => f.id !== farm.id);
-        Swal.fire(
-          'Deleted!',
-          'Farm has been deleted.',
-          'success'
-        );
-      }
+  updateFarm(): void {
+    this.farmService.updateFarm(this.selectedFarm.id, this.selectedFarm).subscribe(() => {
+      this.getAllFarms();
+      this.closeModal();
     });
   }
 
-  closeModal() {
+  deleteFarm(farm: Farms): void {
+    this.farmService.deleteFarm(farm.id).subscribe(() => {
+      this.getAllFarms();
+    });
+  }
+
+  closeModal(): void {
     this.isAddFarmModalOpen = false;
     this.isEditFarmModalOpen = false;
   }
 
-  base64Image: string | null = null;
-  onFileChange(event: any) {
+  onFileChange(event: any): void {
     const reader = new FileReader();
     reader.onload = (e: any) => {
       this.newFarm.picture = e.target.result;
@@ -99,7 +90,9 @@ export class FarmComponent {
     reader.readAsDataURL(event.target.files[0]);
   }
 
-  toggleMenu(farm: Farm) {
+  toggleMenu(farm: Farms): void {
     farm.showMenu = !farm.showMenu;
   }
 }
+  
+

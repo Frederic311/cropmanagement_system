@@ -1,6 +1,23 @@
-<app-left-sidebar
+<!-- <app-left-sidebar
   *ngIf="shouldShowSidebar()"
   [isLeftSidebarCollapsed]="isLeftSidebarCollapsed()"
   (changeIsLeftSidebarCollapsed)="changeIsLeftSidebarCollapsed($event)"
 ></app-left-sidebar>
-<router-outlet></router-outlet>
+<router-outlet></router-outlet> -->
+
+
+<app-header></app-header>
+
+<div  class="body">
+
+  <div class="sidebar"> <app-sidebar></app-sidebar> </div>
+
+  <div class="main">
+    <router-outlet />
+    <app-footer></app-footer>
+  </div>
+
+</div>
+
+
+<!-- <app-modal></app-modal>  -->
