@@ -13,7 +13,10 @@ public class HarvestDTO {
 
     private LocalDate harvestDate;
 
+    private Integer quantity;
+
     private Long farmId;
 
     private Long cropId;
+
 }

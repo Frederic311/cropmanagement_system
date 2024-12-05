@@ -8,10 +8,11 @@ import { InventoryComponent } from './Pages/inventory/inventory.component';
 import { HarvestComponent } from './Pages/harvest/harvest.component';
 
 export const routes: Routes = [
-  { path: '', component: InventoryComponent },
+  // { path: '', component: InventoryComponent },
+  { path: '', component: LandingpageComponent },
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignupComponent },
-  { path: 'sidebar', component: LeftSidebarComponent },
+  // { path: 'sidebar', component: LeftSidebarComponent },
   { path: 'inventory', component: InventoryComponent },
   { path: 'harvest', component: HarvestComponent },
 
