@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
+import { CropCardComponent } from "../../features/crop-card/crop-card.component";
 
 @Component({
   selector: 'app-crop-page',
   standalone: true,
-  imports: [],
+  imports: [CropCardComponent],
   templateUrl: './crop-page.component.html',
   styleUrl: './crop-page.component.css'
 })
