@@ -18,7 +18,7 @@ export class LeftSidebarComponent {
       label: 'Dashboard',
     },
     {
-      routeLink: 'products',
+      routeLink: 'harvest',
       icon: 'fas fa-box-open',
       label: 'Products',
     },
