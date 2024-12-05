@@ -31,6 +31,7 @@ public class CropController {
 
     @GetMapping("/all-crops/{id}")
     public List<Crop> getCropsByFarmId(@PathVariable Long id){
+
         return cropService.getCropsByFarmId(id);
     }
 
