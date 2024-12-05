@@ -6,9 +6,11 @@ import { LandingpageComponent } from '../app/Pages/landingpage/landingpage.compo
 import { LeftSidebarComponent } from './features/left-sidebar/left-sidebar.component';
 import { TestComponent } from './Pages/test/test.component';
 import { CropPageComponent } from './Pages/crop-page/crop-page.component';
+import { InventoryComponent } from './Pages/inventory/inventory.component';
+import { HarvestComponent } from './Pages/harvest/harvest.component';
 
 export const routes: Routes = [
-  { path: '', component: LandingpageComponent },
+  { path: '', component: InventoryComponent },
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignupComponent },
   { path: 'sidebar', component: LeftSidebarComponent },
@@ -21,6 +23,8 @@ export const routes: Routes = [
     component: TestComponent
   },
 
+  { path: 'inventory', component: InventoryComponent },
+  { path: 'harvest', component: HarvestComponent },
 
   // { path: 'farm', component: FarmsComponent}
 
