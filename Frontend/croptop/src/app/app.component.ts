@@ -5,10 +5,13 @@ import { MainComponent } from './features/main/main.component';
 import { CommonModule } from '@angular/common';
 import { trigger, state, style, transition, animate } from '@angular/animations';
 import { AuthService } from '../../src/app/services/auth/auth.service';
+import { HeaderComponent } from "./shared/header/header.component";
+import { SidebarComponent } from "./shared/sidebar/sidebar.component";
+import { FooterComponent } from "./shared/footer/footer.component";
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet,LeftSidebarComponent,MainComponent,CommonModule],
+  imports: [RouterOutlet, LeftSidebarComponent, MainComponent, CommonModule, HeaderComponent, SidebarComponent, FooterComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
   animations: [ trigger('state', [ state('done', style({ opacity: 1 })), transition('* => done', [ animate('1s') ]) ]) ]

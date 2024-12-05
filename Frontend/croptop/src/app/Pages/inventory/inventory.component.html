@@ -10,15 +10,15 @@
                 <p>Export</p>
             
             </div>
-            <div class="delete-button" (click)="deleteSelectedCrops()">
+            <div class="delete-button" >
                 <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="19px" fill="#fff"><path d="M277.37-111.87q-37.78 0-64.39-26.61t-26.61-64.39v-514.5h-45.5v-91H354.5v-45.5h250.52v45.5h214.11v91h-45.5v514.5q0 37.78-26.61 64.39t-64.39 26.61H277.37Zm405.26-605.5H277.37v514.5h405.26v-514.5ZM355.7-280.24h85.5v-360h-85.5v360Zm163.1 0h85.5v-360h-85.5v360ZM277.37-717.37v514.5-514.5Z"/></svg>
                 <p>Delete</p>
             
             </div>
         </div>
         <div class="right-part">
-            <app-searchbar></app-searchbar>
-            <div class="addCrop-button" (click)="openMyModal()" role="button" tabindex="0" (keydown.enter)="openMyModal()">
+            <!-- <app-searchbar></app-searchbar> -->
+            <div class="addCrop-button"  role="button" tabindex="0" >
                 <svg xmlns="http://www.w3.org/2000/svg" height="19px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed">
                     <path d="M434.5-434.5H191.87v-91H434.5v-242.63h91v242.63h242.63v91H525.5v242.63h-91V-434.5Z"/>
                 </svg>
@@ -30,13 +30,13 @@
     <div class="table-container">
         <div class="table-head-row">
             <div class="checkbox">
-                <label class="container">
+                <!-- <label class="container">
                     <input 
                     type="checkbox" 
                     [attr.aria-label]="'Select ' + crop.crop_name" 
                     (change)="toggleCropSelection(crop.crop_id, $event)">
                   <div class="checkmark"></div>
-                </label>
+                </label> -->
               </div>
             <div class="col-name">
                 <p>Crop Name</p>
@@ -62,13 +62,13 @@
         <div class="table-body">
             <div class="row" *ngFor="let crop of crops">
                 <div class="checkbox">
-                    <label class="container">
+                    <!-- <label class="container">
                         <input 
                         type="checkbox" 
                         [attr.aria-label]="'Select ' + crop.crop_name" 
                         (change)="toggleCropSelection(crop.crop_id, $event)">
                       <div class="checkmark"></div>
-                    </label>
+                    </label> -->
                   </div>
                 <div class="name">
                     <p>{{ crop.crop_name }}</p>
@@ -77,15 +77,15 @@
                     <p>{{ crop.crop_quantity }}</p>
                 </div>
                 <div class="date">
-                    <p>{{ crop.havested_Date | date:'dd-MM-yyyy' }}</p>
+                    <!-- <p>{{ crop.havested_Date | date:'dd-MM-yyyy' }}</p> -->
                 </div>
                 <div class="date">
-                    <p>{{ crop.expiration_Date | date:'dd-MM-yyyy' }}</p>
+                    <!-- <p>{{ crop.expiration_Date | date:'dd-MM-yyyy' }}</p> -->
                 </div>
                 <div class="status">
-                    <div [ngClass]="{'status-unhealthy': crop.crop_status === 'UNHEALTHY', 'status-good': crop.crop_status === 'GOOD', 'status-bad': crop.crop_status === 'BAD'}">
+                    <!-- <div [ngClass]="{'status-unhealthy': crop.crop_status === 'UNHEALTHY', 'status-good': crop.crop_status === 'GOOD', 'status-bad': crop.crop_status === 'BAD'}">
                         <p>{{ crop.crop_status }}</p>
-                    </div>
+                    </div> -->
                 </div>
                 <div class="price">
                     <p>{{ crop.estimated_amount }}</p>
