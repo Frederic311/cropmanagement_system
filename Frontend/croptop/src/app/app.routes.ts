@@ -12,7 +12,7 @@ export const routes: Routes = [
   { path: '', component: LandingpageComponent },
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignupComponent },
-  { path: 'sidebar', component: LeftSidebarComponent },
+  // { path: 'sidebar', component: LeftSidebarComponent },
   { path: 'inventory', component: InventoryComponent },
   { path: 'harvest', component: HarvestComponent },
 

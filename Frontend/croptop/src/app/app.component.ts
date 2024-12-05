@@ -14,7 +14,7 @@ import { FooterComponent } from "./shared/footer/footer.component";
   imports: [RouterOutlet, LeftSidebarComponent, MainComponent, CommonModule, HeaderComponent, SidebarComponent, FooterComponent],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
-  encapsulation: ViewEncapsulation.None,
+  // encapsulation: ViewEncapsulation.None,
   animations: [trigger('state', [state('done', style({ opacity: 1 })), transition('* => done', [animate('1s')])])]
 })
 export class AppComponent implements OnInit {
