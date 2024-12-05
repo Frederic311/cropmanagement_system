@@ -4,12 +4,14 @@ import { SignupComponent } from '../app/Pages/signup/signup.component';
 import { LandingpageComponent } from '../app/Pages/landingpage/landingpage.component';
 // import { FarmsComponent } from './Pages/farms/farms.component';
 import { LeftSidebarComponent } from './features/left-sidebar/left-sidebar.component';
+import { InventoryComponent } from './Pages/inventory/inventory.component';
 
 export const routes: Routes = [
   { path: '', component: LandingpageComponent },
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignupComponent },
   { path: 'sidebar', component: LeftSidebarComponent },
+  { path: 'inventory', component: InventoryComponent },
 
   // { path: 'farm', component: FarmsComponent}
 
