@@ -27,7 +27,7 @@
 
     <div class="form-group">
       <label for="farm">Select Farm</label>
-      <select id="farm" formControlName="farmId" class="form-control">
+      <select id="farm" formControlName="farm_id" class="form-control">
         <option *ngFor="let farm of farms" [value]="farm.id">{{ farm.name }}</option>
       </select>
       <div *ngIf="cropForm.get('farmId')?.invalid && cropForm.get('farmId')?.touched">

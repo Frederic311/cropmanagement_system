@@ -15,7 +15,7 @@ import { CommonModule } from '@angular/common';
 export class CropFormComponent {
   @Input() crop: any = { cropName: '', 
     cropDescription: '', 
-    farmId: null 
+    farm_id: null
   };
   cropForm!: FormGroup;
   farms: any[] = [];
@@ -33,6 +33,7 @@ export class CropFormComponent {
 
   initializeForm() {
     this.cropForm = this.fb.group({
+      id: 0,
       cropName: [this.crop.cropName, Validators.required],
       cropDescription: [this.crop.cropDescription],
       farm_id: [this.crop.farm_id, Validators.required]
@@ -40,18 +41,14 @@ export class CropFormComponent {
   }
 
   loadFarms() {
-    this.cropService.getUserFromToken().subscribe({
-      next: (user) => {
-        this.user = user;
+   
         this.cropService.getAllFarms().subscribe({
           next: (farms) => {
             this.farms = farms;
           },
           error: (err) => console.error('Error loading farms:', err)
         });
-      },
-      error: (err) => console.error('Error fetching user:', err)
-    });
+   
   }
 
   onSubmit() {
@@ -87,5 +84,6 @@ export class CropFormComponent {
         }
       });
     }
+    this.router.navigate(['/crop-page']);
   }
 }

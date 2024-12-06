@@ -3,7 +3,7 @@ import { LoginComponent } from '../app/Pages/login/login.component';
 import { SignupComponent } from '../app/Pages/signup/signup.component';
 import { LandingpageComponent } from '../app/Pages/landingpage/landingpage.component';
 import { LeftSidebarComponent } from './features/left-sidebar/left-sidebar.component';
-// import { TestComponent } from './Pages/test/test.component';
+import { TestComponent } from './Pages/test/test.component';
 import { CropPageComponent } from './Pages/crop-page/crop-page.component';
 import { MainComponent } from './features/main/main.component';
 import { FarmComponent } from './Pages/farm/farm.component';
@@ -24,7 +24,6 @@ export const routes: Routes = [
     path: 'crop-page',
     component: CropPageComponent
   },
-<<<<<<< HEAD
   { 
     path: 'test', 
     component: TestComponent
@@ -33,13 +32,6 @@ export const routes: Routes = [
     path: 'crop-form',
     component: CropFormComponent
   },
-=======
-  // {
-  //   path: 'test',
-  //   component: TestComponent
-  // },
-
->>>>>>> cbdf9e1cc7fa817ccd0c53ad17280bd847776083
   { path: 'inventory', component: InventoryComponent },
   { path: 'harvest', component: HarvestComponent },
   { path: 'farm', component: FarmComponent }
