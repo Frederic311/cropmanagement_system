@@ -118,6 +118,13 @@ export class HarvestComponent implements OnInit {
       }
     }
   }
+
+  deleteSelectedHarvests(): void { this.selectedHarvests.forEach((harvestId) => { this.harvestService.deleteHarvest(harvestId).subscribe( () => {
+    this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Harvest deleted successfully' });
+    this.getAllHarvests(); }, (error) => { console.error('Error deleting harvest', error);
+       this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Error deleting harvest: ' + error.message }); } ); });
+       this.selectedHarvests = []; }
+
 }
 
 export interface HarvestDTO {

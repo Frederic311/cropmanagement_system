@@ -3,7 +3,7 @@ import { LoginComponent } from '../app/Pages/login/login.component';
 import { SignupComponent } from '../app/Pages/signup/signup.component';
 import { LandingpageComponent } from '../app/Pages/landingpage/landingpage.component';
 import { LeftSidebarComponent } from './features/left-sidebar/left-sidebar.component';
-import { TestComponent } from './Pages/test/test.component';
+// import { TestComponent } from './Pages/test/test.component';
 import { CropPageComponent } from './Pages/crop-page/crop-page.component';
 import { MainComponent } from './features/main/main.component';
 import { FarmComponent } from './Pages/farm/farm.component';
@@ -24,10 +24,10 @@ export const routes: Routes = [
     path: 'crop-page',
     component: CropPageComponent
   },
-  { 
-    path: 'test', 
-    component: TestComponent
-  },
+  // {
+  //   path: 'test',
+  //   component: TestComponent
+  // },
   {
     path: 'crop-form',
     component: CropFormComponent
