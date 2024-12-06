@@ -1,0 +1,14 @@
+.crop-list{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    padding: 16px;   
+}
+
+.delete-button{
+    cursor: pointer;
+    background-color: #DB5D5B;
+    color: #fff;
+    border: 0.1px solid rgba(211, 131, 73, 0.653);
+    border: none;
+}

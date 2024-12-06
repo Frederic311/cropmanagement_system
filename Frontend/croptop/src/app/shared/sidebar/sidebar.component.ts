@@ -15,9 +15,11 @@ export class SidebarComponent {
   activeItem: string = 'dashboard';
   isLoggedIn: boolean = false;
 
+
   constructor(private router: Router , private authService:AuthService) {
     this.isLoggedIn = this.authService.isLoggedIn();
   }
+  
 
   setActive(item: string): void {
     this.activeItem = item;
