@@ -1,0 +1,86 @@
+
+
+<div class="container">
+  <button class="add-farm-button" (click)="openAddFarmModal()">Add Farm</button>
+  <div class="cards">
+    <div class="farms-page">
+      <div class="farms-container">
+        <div class="farm-card" *ngFor="let farm of farms">
+          <div class="card-content">
+            <img [src]="farm.picture" alt="Farm Picture" class="farm-image" />
+            <div class="text-content">
+              <h3>{{ farm.name }}</h3>
+              <p>{{ farm.description }}</p>
+              <p>{{ farm.deadline }}</p>
+            </div>
+            <div class="menu-container">
+              <img src="images/dots.png" alt="Menu" (click)="toggleMenu(farm)" class="menu-icon">
+              <div class="menu" *ngIf="farm.showMenu">
+                <button (click)="openEditFarmModal(farm)" class="menu-item">
+                  <img src="images/editBlue.png" alt="Edit" height="18"> Edit
+                </button>
+                <button (click)="deleteFarm(farm)" class="menu-item">
+                  <img src="images/icondelete.png" alt="Delete" height="18"> Delete
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Add Farm Modal -->
+      <div class="modal" *ngIf="isAddFarmModalOpen">
+        <div class="modal-content">
+          <div class="modhead">
+            <h3>Add Farm</h3>
+            <div class="background" (click)="closeModal()">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24px" height="24px">
+                <path d="M 4.7070312 3.2929688 L 3.2929688 4.7070312 L 10.585938 12 L 3.2929688 19.292969 L 4.7070312 20.707031 L 12 13.414062 L 19.292969 20.707031 L 20.707031 19.292969 L 13.414062 12 L 20.707031 4.7070312 L 19.292969 3.2929688 L 12 10.585938 L 4.7070312 3.2929688 z"/>
+              </svg>
+            </div>
+          </div>
+          <!-- <hr style="margin-top: 10px; margin-bottom: 20px;  background-color: rgba(0, 0, 0, 0.152); "> -->
+          <div class="first" style="margin-top: 20px;">
+            <label>Name <input type="text" [(ngModel)]="newFarm.name"></label>
+            <label>Deadline <input type="date" [(ngModel)]="newFarm.deadline"></label>
+          </div>
+          <div class="second">
+            <label>Description <input type="text" [(ngModel)]="newFarm.description" placeholder=" write your description here"></label>
+            
+          </div>
+          <label>Import Picture <br>
+            <input type="file" (change)="onFileChange($event)">
+          </label>
+          <!-- <hr style="margin-top: 40px; background-color: rgba(0, 0, 0, 0.152);"> -->
+          <button (click)="addFarm()" style="margin-top: 20px;">Save</button>
+        </div>
+      </div>
+
+      <!-- Edit Farm Modal -->
+      <div class="modal" *ngIf="isEditFarmModalOpen">
+        <div class="modal-content">
+          <div class="modhead">
+            <h3>Update Farm</h3>
+            <div class="background" (click)="closeModal()">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24px" height="24px">
+                <path d="M 4.7070312 3.2929688 L 3.2929688 4.7070312 L 10.585938 12 L 3.2929688 19.292969 L 4.7070312 20.707031 L 12 13.414062 L 19.292969 20.707031 L 20.707031 19.292969 L 13.414062 12 L 20.707031 4.7070312 L 19.292969 3.2929688 L 12 10.585938 L 4.7070312 3.2929688 z"/>
+              </svg>
+            </div>
+          </div>
+          <hr>
+          <div class="first" style="margin-top: 20px;">
+            <label>Name <input type="text" [(ngModel)]="selectedFarm.name"></label>
+            <label>Description <input type="text" [(ngModel)]="selectedFarm.description"></label>
+          </div>
+          <div class="second">
+            <label>Deadline <input type="date" [(ngModel)]="selectedFarm.deadline"></label>
+          </div>
+          <label>Import Picture <br>
+            <input type="file" (change)="onFileChange($event)">
+          </label>
+          <button (click)="updateFarm()" style="margin-top: 20px;">Update</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

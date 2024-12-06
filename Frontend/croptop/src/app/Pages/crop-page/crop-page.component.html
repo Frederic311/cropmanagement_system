@@ -1,1 +1,9 @@
-<p>crop-page works!</p>
+<div *ngFor="let crop of crops">
+    <div>
+      <h2>{{ crop.description }}</h2>
+      <p>{{ crop.type }} - {{ crop.amount}}</p>
+    </div>
+    
+  </div>
+
+<app-crop-card/>
