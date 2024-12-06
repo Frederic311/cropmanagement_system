@@ -10,6 +10,9 @@ export class CropService {
 
   token: any = localStorage.getItem('token')
 
+  user: any
+
+
   private createAuthorizationHeader(token: string): HttpHeaders {
     return new HttpHeaders({
       'Content-Type': 'application/json',
@@ -42,5 +45,19 @@ export class CropService {
   deleteCrop(id:number): Observable<any>{
     const headers = this.createAuthorizationHeader(this.token);
     return this.http.delete(this.baseUrl + "delete/" + id, {headers})
+  }
+
+  getAllFarms(): Observable<any>{
+    const headers = this.createAuthorizationHeader(this.token);
+    this.getUserFromToken().subscribe(
+      response => this.user = response
+    )
+    return this.http.get("http://localhost:8080/api/farm/all-farms/" + this.user.id, {headers})
+  }
+
+  getUserFromToken(): Observable<any>{
+    const headers = this.createAuthorizationHeader(this.token);
+    return this.http.get("http://localhost:8080/api/auth?token=" + localStorage.getItem("token"), {headers})
+    
   }
 }

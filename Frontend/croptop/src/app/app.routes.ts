@@ -14,7 +14,6 @@ export const routes: Routes = [
   { path: '', component: LandingpageComponent },
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignupComponent },
-<<<<<<< HEAD
   { path: 'sidebar', component: LeftSidebarComponent },
   {
     path: 'crop-page', 
@@ -25,9 +24,6 @@ export const routes: Routes = [
     component: TestComponent
   },
 
-=======
-  // { path: 'sidebar', component: LeftSidebarComponent },
->>>>>>> 7e8c89a81246a134b1b68f814de1a712bc07ce8e
   { path: 'inventory', component: InventoryComponent },
   { path: 'harvest', component: HarvestComponent },
 
