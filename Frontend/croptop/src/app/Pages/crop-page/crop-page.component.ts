@@ -10,6 +10,7 @@ import { CommonModule } from '@angular/common';
   styleUrl: './crop-page.component.css'
 })
 export class CropPageComponent {
-crops: any;
+  crops: any;
 
+  
 }

@@ -9,5 +9,7 @@ import { RouterLink } from '@angular/router';
   styleUrl: './crop-card.component.css'
 })
 export class CropCardComponent {
+crop: any;
+
 
 }
