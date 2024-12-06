@@ -18,4 +18,6 @@ export class CropCardComponent {
   };
   constructor(private cropService: CropService){}
 
+  
+
 }
