@@ -53,4 +53,5 @@ export interface HarvestDTO {
     cropName: string;
     cropDescription: string;
   };
+  farmId: number;
 }
