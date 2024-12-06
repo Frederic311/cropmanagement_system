@@ -1,7 +1,7 @@
 .body{
     height: 80vh;
     width: 100%;
-    background-color: rgba(165, 42, 42, 0);
+    background-color: rgba(232, 126, 126, 0);
     font-family: 'poppins';
     color: #232323;
     position: relative;
@@ -183,7 +183,7 @@
                 background-color: #05fff700;
             }
             .col-date{
-                width: 15%;
+                width: 17%;
                 background-color: #00a2ff00;
             }
             .col-status{
@@ -195,7 +195,7 @@
                 background-color: #ff01e100;
             }
             .col-edit{
-                width: 5%;
+                width: 8%;
                 background-color: #ff000000;
             }
         }
