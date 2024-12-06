@@ -49,4 +49,9 @@ export class SidebarComponent {
     this.setActive('logout');
     this.authService.logout();
   }
+
+navigateToFarms(): void{
+this.setActive('farms');
+this.router.navigate(['/farm'])
+}
 }

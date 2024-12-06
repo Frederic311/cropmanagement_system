@@ -30,6 +30,11 @@
       </svg>
       <p>Harvest</p>
     </div>
+    <div class="users" [ngClass]="{'active': activeItem === 'farms'}" (click)="navigateToFarms()">
+      <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 0 100 100" width="24px" fill="#2B2F39">
+        <path d="M10 10 L90 10 L90 90 L10 90 Z" /> <path d="M40 20 L60 20 L60 40 L40 40 Z" /> <path d="M30 60 L70 60 L70 90 L30 90 Z" /> <path d="M50 50 L70 70" /> <path d="M70 70 L60 80 L70 90" /> </svg>
+      <p>Farms</p>
+    </div>
     <div class="logout" [ngClass]="{'active': activeItem === 'logout'}" (click)="navigateToLogout()">
       <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#2B2F39">
         <path d="M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h280v80H200v560h280v80H200Zm440-160-55-58 102-102H360v-80h327L585-622l55-58 200 200-200 200Z"/>
