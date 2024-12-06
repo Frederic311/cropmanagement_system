@@ -12,6 +12,7 @@ import { FarmComponent } from './Pages/farm/farm.component';
 
 import { InventoryComponent } from './Pages/inventory/inventory.component';
 import { HarvestComponent } from './Pages/harvest/harvest.component';
+import { CropFormComponent } from './features/crop-form/crop-form.component';
 
 export const routes: Routes = [
   // { path: '', component: InventoryComponent },
@@ -23,11 +24,22 @@ export const routes: Routes = [
     path: 'crop-page',
     component: CropPageComponent
   },
+<<<<<<< HEAD
+  { 
+    path: 'test', 
+    component: TestComponent
+  },
+  {
+    path: 'crop-form',
+    component: CropFormComponent
+  },
+=======
   // {
   //   path: 'test',
   //   component: TestComponent
   // },
 
+>>>>>>> cbdf9e1cc7fa817ccd0c53ad17280bd847776083
   { path: 'inventory', component: InventoryComponent },
   { path: 'harvest', component: HarvestComponent },
   { path: 'farm', component: FarmComponent }

@@ -1,14 +1,18 @@
 <div class="card-container">
     <div class="card">
       <div class="card-front">
-        <img src="cropmanagement_system/Frontend/croptop/src/assets/images/lol.png" alt="Beautiful Plant">
+        <img
+          [src]="crop.imageUrl || 'assets/images/lol.png'"
+          alt="{{ crop.cropName || 'Beautiful Plant' }}"
+        />
       </div>
-      <div class="card-back">
-        <h2>Plant</h2>
-        <p>This plant is known for its vibrant green leaves and low maintenance. Perfect for indoor decoration!</p>
+        <div class="card-back">
+        <h2>{{ crop.cropName || 'Unknown Plant' }}</h2>
+        <p>{{ crop.cropDescription || 'No description available for this plant.' }}</p>
         <button fill="clear" [routerLink]="['/cropForm', crop.id]">
-            Edit crop
+          Edit crop
         </button>
       </div>
     </div>
-</div>
+  </div>
+  

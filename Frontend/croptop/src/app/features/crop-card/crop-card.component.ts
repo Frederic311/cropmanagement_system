@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { CropService } from '../../services/crop/crop.service';
 
 @Component({
   selector: 'app-crop-card',
@@ -9,7 +10,12 @@ import { RouterLink } from '@angular/router';
   styleUrl: './crop-card.component.css'
 })
 export class CropCardComponent {
-crop: any;
-
+  @Input() crop: any = {
+    id: null,
+    cropName: '',
+    cropDescription: '',
+    imageUrl: 'assets/images/lol.png' // Default image path
+  };
+  constructor(private cropService: CropService){}
 
 }
