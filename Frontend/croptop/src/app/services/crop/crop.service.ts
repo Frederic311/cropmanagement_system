@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, switchMap } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -47,13 +47,19 @@ export class CropService {
     return this.http.delete(this.baseUrl + "delete/" + id, {headers})
   }
 
-  getAllFarms(): Observable<any>{
+  getAllFarms(): Observable<any> {
     const headers = this.createAuthorizationHeader(this.token);
-    this.getUserFromToken().subscribe(
-      response => this.user = response
-    )
-    return this.http.get("http://localhost:8080/api/farm/all-farms/" + this.user.id, {headers})
+    return this.getUserFromToken().pipe(
+      switchMap(response => {
+        this.user = response; // Assign the user data
+        if (!this.user || !this.user.id) {
+          throw new Error("User ID is not available");
+        }
+        return this.http.get(`http://localhost:8080/api/farm/all-farms/${this.user.id}`, { headers });
+      })
+    );
   }
+  
 
   getUserFromToken(): Observable<any>{
     const headers = this.createAuthorizationHeader(this.token);
