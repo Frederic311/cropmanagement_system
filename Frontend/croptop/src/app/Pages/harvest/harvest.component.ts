@@ -24,13 +24,11 @@ export class HarvestComponent implements OnInit {
   currentHarvestId: number | null = null;
 
   constructor(private harvestService: HarvestService, private fb: FormBuilder, private messageService: MessageService) {
-    this.addHarvestForm = this.fb.group({
-      title: ['', Validators.required],
+    this.addHarvestForm = this.fb.group({ title: ['', Validators.required],
       harvestDate: ['', Validators.required],
       quantity: ['', Validators.required],
       cropId: ['', Validators.required],
-      farmId: ['', Validators.required]
-    });
+       farmId: ['', Validators.required] });
   }
 
   ngOnInit(): void {
