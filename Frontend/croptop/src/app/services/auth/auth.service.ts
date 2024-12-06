@@ -21,11 +21,11 @@ export class AuthService {
 
   login(authRequest: { email: string, password: string }): Observable<any>
   { return this.http.post(`http://localhost:8080/api/auth/login`, authRequest).pipe(
-     tap((response: any) => { localStorage.setItem('token', response.token); }) ); }
+     tap((response: any) => { localStorage.setItem('token', response.text); }) ); }
 
   getUserFromToken(token: string): Observable<any> {
     const headers = this.createAuthorizationHeader(token);
-    return this.http.get(`http://localhost:8080/api/auth`, { headers });
+    return this.http.get(`http://localhost:8080/api/auth?token=${token}`, { headers });
   }
 
   validateToken(token: string): Observable<any> {

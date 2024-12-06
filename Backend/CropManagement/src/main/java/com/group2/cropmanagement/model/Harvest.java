@@ -27,6 +27,9 @@ public class Harvest {
     @Column
     private LocalDate harvestDate;
 
+    @Column
+    private Integer quantity;
+
     @ManyToOne
     @JoinColumn(name = "crop_id")
     @JsonManagedReference
