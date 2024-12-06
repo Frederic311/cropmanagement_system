@@ -8,5 +8,5 @@ import { Component } from '@angular/core';
   styleUrl: './harvest.component.css'
 })
 export class HarvestComponent {
-
+crops: any;
 }
