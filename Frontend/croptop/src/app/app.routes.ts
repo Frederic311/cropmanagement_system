@@ -24,10 +24,6 @@ export const routes: Routes = [
     path: 'crop-page',
     component: CropPageComponent
   },
-  { 
-    path: 'test', 
-    component: TestComponent
-  },
   {
     path: 'crop-form',
     component: CropFormComponent
