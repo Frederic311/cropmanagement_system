@@ -92,3 +92,15 @@
   a {
     cursor: pointer;
   }
+
+  .has-error input {
+    border: 1px solid red;
+  }
+  
+  .error-msg {
+    color: red;
+    font-size: 12px;
+    margin-top: 5px;
+    display: block;
+  }
+  
