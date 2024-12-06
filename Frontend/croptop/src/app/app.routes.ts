@@ -37,6 +37,5 @@ export const routes: Routes = [
   { path: 'harvest', component: HarvestComponent },
   { path: 'farm', component: FarmComponent }
 
-  // { path: 'farm', component: FarmsComponent}
 
 ];

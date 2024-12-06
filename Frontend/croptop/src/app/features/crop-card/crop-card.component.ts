@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink, RouterModule } from '@angular/router';
 import { CropService } from '../../services/crop/crop.service';
 
 @Component({
@@ -16,8 +16,9 @@ export class CropCardComponent {
     cropDescription: '',
     imageUrl: 'assets/images/lol.png' // Default image path
   };
-  constructor(private cropService: CropService){}
-
-  
+  constructor(private cropService: CropService, private router: Router){}
+  editCrop(cropId: number): void {
+    this.router.navigate(['/crop-form', cropId]);
+  }
 
 }

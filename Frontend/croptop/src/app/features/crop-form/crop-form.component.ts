@@ -4,7 +4,6 @@ import { CropService } from '../../services/crop/crop.service';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 
-
 @Component({
   selector: 'app-crop-form',
   standalone: true,
@@ -13,27 +12,39 @@ import { CommonModule } from '@angular/common';
   styleUrl: './crop-form.component.css'
 })
 export class CropFormComponent {
-  @Input() crop: any = { cropName: '', 
-    cropDescription: '', 
+  @Input() crop: any = {
+    id: null,
+    cropName: '',
+    cropDescription: '',
     farm_id: null
   };
+
   cropForm!: FormGroup;
   farms: any[] = [];
-  user: any = null;
-  
-  constructor(private cropService: CropService, private router: Router, private route: ActivatedRoute,  private fb: FormBuilder,) {}
+  isEditMode = false; // Flag for determining edit vs create mode
 
-  isEditMode = false;
+  constructor(
+    private cropService: CropService,
+    private router: Router,
+    private route: ActivatedRoute,
+    private fb: FormBuilder
+  ) {}
 
   ngOnInit(): void {
     this.initializeForm();
     this.loadFarms();
-  }
 
+    // Check if editing an existing crop
+    const cropId = this.route.snapshot.paramMap.get('id');
+    if (cropId) {
+      this.isEditMode = true;
+      this.loadCrop(+cropId);
+    }
+  }
 
   initializeForm() {
     this.cropForm = this.fb.group({
-      id: 0,
+      id: [this.crop.id], // Hidden ID field
       cropName: [this.crop.cropName, Validators.required],
       cropDescription: [this.crop.cropDescription],
       farm_id: [this.crop.farm_id, Validators.required]
@@ -41,14 +52,22 @@ export class CropFormComponent {
   }
 
   loadFarms() {
-   
-        this.cropService.getAllFarms().subscribe({
-          next: (farms) => {
-            this.farms = farms;
-          },
-          error: (err) => console.error('Error loading farms:', err)
-        });
-   
+    this.cropService.getAllFarms().subscribe({
+      next: (farms) => {
+        this.farms = farms;
+      },
+      error: (err) => console.error('Error loading farms:', err)
+    });
+  }
+
+  loadCrop(cropId: number) {
+    this.cropService.getCrop(cropId).subscribe({
+      next: (data) => {
+        this.crop = data;
+        this.cropForm.patchValue(this.crop); // Pre-fill the form with crop data
+      },
+      error: (err) => console.error('Error loading crop:', err)
+    });
   }
 
   onSubmit() {
@@ -58,12 +77,13 @@ export class CropFormComponent {
 
     const cropData = this.cropForm.value;
 
-    if (this.crop.id) {
-      // Update crop
-      this.cropService.updateCrop(this.crop.id, cropData).subscribe({
+    if (this.isEditMode) {
+      // Update existing crop
+      this.cropService.updateCrop(cropData.id, cropData).subscribe({
         next: (response) => {
           console.log('Crop updated successfully:', response);
           alert('Crop updated successfully!');
+          this.router.navigate(['/crop-page']);
         },
         error: (err) => {
           console.error('Error updating crop:', err);
@@ -71,12 +91,13 @@ export class CropFormComponent {
         }
       });
     } else {
-      // Add a new crop
+      // Add new crop
       this.cropService.addCrop(cropData).subscribe({
         next: (response) => {
           console.log('Crop created successfully:', response);
           alert('Crop created successfully!');
-          this.cropForm.reset(); // Reset the form after successful creation
+          this.cropForm.reset();
+          this.router.navigate(['/crop-page']);
         },
         error: (err) => {
           console.error('Error creating crop:', err);
@@ -84,6 +105,6 @@ export class CropFormComponent {
         }
       });
     }
-    this.router.navigate(['/crop-page']);
   }
 }
+
