@@ -43,7 +43,8 @@ export class AuthService {
     localStorage.removeItem('token');
     this.router.navigate(['/login']);
 
-
   }
+
+  isLoggedIn(): boolean { return !!localStorage.getItem('token'); }
 
 }
