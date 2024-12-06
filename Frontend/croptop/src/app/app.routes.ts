@@ -14,6 +14,7 @@ import { InventoryComponent } from './Pages/inventory/inventory.component';
 import { HarvestComponent } from './Pages/harvest/harvest.component';
 import { CropFormComponent } from './features/crop-form/crop-form.component';
 
+
 export const routes: Routes = [
   // { path: '', component: InventoryComponent },
   { path: '', component: LandingpageComponent },
@@ -24,8 +25,8 @@ export const routes: Routes = [
     path: 'crop-page',
     component: CropPageComponent
   },
-  // {
-  //   path: 'test',
+  // { 
+  //   path: 'test', 
   //   component: TestComponent
   // },
   {

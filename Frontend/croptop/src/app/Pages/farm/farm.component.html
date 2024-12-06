@@ -1,5 +1,3 @@
-
-
 <div class="container">
   <button class="add-farm-button" (click)="openAddFarmModal()">Add Farm</button>
   <div class="cards">
@@ -7,11 +5,11 @@
       <div class="farms-container">
         <div class="farm-card" *ngFor="let farm of farms">
           <div class="card-content">
-            <img [src]="farm.picture" alt="Farm Picture" class="farm-image" />
+            <!-- Image handling has been removed since we're storing images locally -->
             <div class="text-content">
               <h3>{{ farm.name }}</h3>
-              <p>{{ farm.description }}</p>
-              <p>{{ farm.deadline }}</p>
+              <p>ID: {{ farm.id }}</p>
+              <p>Description: {{ farm.description }}</p>
             </div>
             <div class="menu-container">
               <img src="images/dots.png" alt="Menu" (click)="toggleMenu(farm)" class="menu-icon">
@@ -39,19 +37,13 @@
               </svg>
             </div>
           </div>
-          <!-- <hr style="margin-top: 10px; margin-bottom: 20px;  background-color: rgba(0, 0, 0, 0.152); "> -->
           <div class="first" style="margin-top: 20px;">
             <label>Name <input type="text" [(ngModel)]="newFarm.name"></label>
-            <label>Deadline <input type="date" [(ngModel)]="newFarm.deadline"></label>
-          </div>
-          <div class="second">
-            <label>Description <input type="text" [(ngModel)]="newFarm.description" placeholder=" write your description here"></label>
-            
+            <label>Description <input type="text" [(ngModel)]="newFarm.description"></label>
           </div>
           <label>Import Picture <br>
             <input type="file" (change)="onFileChange($event)">
           </label>
-          <!-- <hr style="margin-top: 40px; background-color: rgba(0, 0, 0, 0.152);"> -->
           <button (click)="addFarm()" style="margin-top: 20px;">Save</button>
         </div>
       </div>
@@ -71,9 +63,6 @@
           <div class="first" style="margin-top: 20px;">
             <label>Name <input type="text" [(ngModel)]="selectedFarm.name"></label>
             <label>Description <input type="text" [(ngModel)]="selectedFarm.description"></label>
-          </div>
-          <div class="second">
-            <label>Deadline <input type="date" [(ngModel)]="selectedFarm.deadline"></label>
           </div>
           <label>Import Picture <br>
             <input type="file" (change)="onFileChange($event)">

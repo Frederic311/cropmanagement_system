@@ -28,7 +28,7 @@ export class AuthService {
 
   getUserFromToken(token: string): Observable<any> {
     const headers = this.createAuthorizationHeader(token);
-    return this.http.get(`http://localhost:8080/api/auth`, { headers });
+    return this.http.get(`http://localhost:8080/api/auth?token=${token}`, { headers });
   }
 
   validateToken(token: string): Observable<any> {
@@ -42,9 +42,11 @@ export class AuthService {
   logout() {
     localStorage.removeItem('token');
     this.router.navigate(['/login']);
-
   }
-
   isLoggedIn(): boolean { return !!localStorage.getItem('token'); }
 
+  
+
 }
+
+
