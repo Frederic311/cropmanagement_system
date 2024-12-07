@@ -12,18 +12,23 @@ import { CommonModule } from '@angular/common';
   styleUrl: './crop-form.component.css'
 })
 export class CropFormComponent {
-  @Input() crop: any = { id:'', cropName: '',
+  @Input() crop: any = {
+    id: '',
+    cropName: '',
     cropDescription: '',
     farm_id: null
   };
 
   cropForm!: FormGroup;
   farms: any[] = [];
-  user: any = null;
+  isEditMode = false; // Flag for determining edit vs create mode
 
-  constructor(private cropService: CropService, private router: Router, private route: ActivatedRoute,  private fb: FormBuilder,) {}
-
-  isEditMode = false;
+  constructor(
+    private cropService: CropService,
+    private router: Router,
+    private route: ActivatedRoute,
+    private fb: FormBuilder
+  ) {}
 
   ngOnInit(): void {
     this.initializeForm();
@@ -47,14 +52,22 @@ export class CropFormComponent {
   }
 
   loadFarms() {
+    this.cropService.getAllFarms().subscribe({
+      next: (farms) => {
+        this.farms = farms;
+      },
+      error: (err) => console.error('Error loading farms:', err)
+    });
+  }
 
-        this.cropService.getAllFarms().subscribe({
-          next: (farms) => {
-            this.farms = farms;
-          },
-          error: (err) => console.error('Error loading farms:', err)
-        });
-
+  loadCrop(cropId: number) {
+    this.cropService.getCrop(cropId).subscribe({
+      next: (data) => {
+        this.crop = data;
+        this.cropForm.patchValue(this.crop); // Pre-fill the form with crop data
+      },
+      error: (err) => console.error('Error loading crop:', err)
+    });
   }
 
   onSubmit() {
@@ -94,4 +107,3 @@ export class CropFormComponent {
     }
   }
 }
-
