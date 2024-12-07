@@ -13,14 +13,14 @@ import { CommonModule } from '@angular/common';
   styleUrl: './crop-form.component.css'
 })
 export class CropFormComponent {
-  @Input() crop: any = { cropName: '', 
-    cropDescription: '', 
+  @Input() crop: any = { id:'', cropName: '',
+    cropDescription: '',
     farm_id: null
   };
   cropForm!: FormGroup;
   farms: any[] = [];
   user: any = null;
-  
+
   constructor(private cropService: CropService, private router: Router, private route: ActivatedRoute,  private fb: FormBuilder,) {}
 
   isEditMode = false;
@@ -41,14 +41,14 @@ export class CropFormComponent {
   }
 
   loadFarms() {
-   
+
         this.cropService.getAllFarms().subscribe({
           next: (farms) => {
             this.farms = farms;
           },
           error: (err) => console.error('Error loading farms:', err)
         });
-   
+
   }
 
   onSubmit() {

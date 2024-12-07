@@ -449,3 +449,11 @@
     opacity: 0.9;
   }
 
+/* Add this to your harvest.component.css or global styles.css */
+.add-harvest-form select {
+    color: #000 !important; /* Set the text color to black */
+  }
+
+  .add-harvest-form option {
+    color: #000 !important; /* Set the text color to black */
+  }

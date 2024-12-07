@@ -23,16 +23,13 @@ export class CropPageComponent {
   }
 
   // Fetch all crops by farm ID
-  fetchCrops() {
-    this.cropService.getCropsByFarmId(1).subscribe({
-      next: (data) => {
-        this.crops = data; // Assign fetched crops to the list
-      },
-      error: (err) => {
-        console.error('Error fetching crops:', err);
-      }
-    });
-  }
+  fetchCrops() { const farmId = localStorage.getItem('farmId');
+    if (farmId) { this.cropService.getCropsByFarmId(parseInt(farmId, 10)).subscribe({
+       next: (data) => { this.crops = data;
+        // Assign fetched crops to the list
+         }, error: (err) => { console.error('Error fetching crops:', err);
+
+          } }); } else { console.error('No farm ID found in local storage.'); } }
 
   // Delete a crop
   deleteCrop(id: number) {

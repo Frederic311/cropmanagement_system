@@ -13,6 +13,7 @@ import { FarmComponent } from './Pages/farm/farm.component';
 import { InventoryComponent } from './Pages/inventory/inventory.component';
 import { HarvestComponent } from './Pages/harvest/harvest.component';
 import { CropFormComponent } from './features/crop-form/crop-form.component';
+import { DetailsComponent } from './Pages/details/details.component';
 
 
 export const routes: Routes = [
@@ -25,8 +26,8 @@ export const routes: Routes = [
     path: 'crop-page',
     component: CropPageComponent
   },
-  // { 
-  //   path: 'test', 
+  // {
+  //   path: 'test',
   //   component: TestComponent
   // },
   {
@@ -36,7 +37,8 @@ export const routes: Routes = [
   { path: 'crop-form/:id', component: CropFormComponent },
   { path: 'inventory', component: InventoryComponent },
   { path: 'harvest', component: HarvestComponent },
-  { path: 'farm', component: FarmComponent }
+  { path: 'farm', component: FarmComponent },
+{path: "details", component: DetailsComponent}
 
   // { path: 'farm', component: FarmsComponent}
 

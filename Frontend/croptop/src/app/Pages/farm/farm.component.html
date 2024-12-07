@@ -3,7 +3,7 @@
   <div class="cards">
     <div class="farms-page">
       <div class="farms-container">
-        <div class="farm-card" *ngFor="let farm of farms">
+        <div class="farm-card" *ngFor="let farm of farms" (click)="selectFarm(farm.id)">
           <div class="card-content">
             <!-- Image handling has been removed since we're storing images locally -->
             <div class="text-content">

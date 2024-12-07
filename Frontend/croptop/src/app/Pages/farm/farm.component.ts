@@ -7,6 +7,8 @@ import { FormsModule } from '@angular/forms';
 import { Farm } from '../../models/farm.model';
 import { FarmService } from '../../services/farm/farm.service';
 import { AuthService } from '../../services/auth/auth.service';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-farm',
@@ -21,11 +23,11 @@ export class FarmComponent implements OnInit {
   selectedFarm: Farm = { id: 0, name: '', description: '', userId: 0 };
   user: any;
   token: string | null = localStorage.getItem('token');
-  
+
   isAddFarmModalOpen = false;
   isEditFarmModalOpen = false;
 
-  constructor(private farmService: FarmService, private authService: AuthService) { }
+  constructor(private farmService: FarmService, private authService: AuthService, private router:Router) { }
 
   ngOnInit(): void {
     this.token = localStorage.getItem('token');
@@ -148,4 +150,10 @@ export class FarmComponent implements OnInit {
   toggleMenu(farm: Farm): void {
     farm.showMenu = !farm.showMenu;
   }
+
+  selectFarm(farmId: number): void { localStorage.setItem('farmId', farmId.toString());
+    this.router.navigate(['/details']);
+    // this.fetchCrops(farmId);
+    // this.checkFarmIdInLocalStorage(); }
+}
 }
