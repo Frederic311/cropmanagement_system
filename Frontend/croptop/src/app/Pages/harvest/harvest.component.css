@@ -437,7 +437,7 @@
 
  #ok {
     background-color: #096a67;
-    color: white;
+    /* color: white; */
   }
 
   #no {
