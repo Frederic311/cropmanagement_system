@@ -22,7 +22,7 @@ export class LoginComponent {
    this.authService.login(authRequest).subscribe( response => {
     this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Login successful! Redirecting...' });
     // Show the message for 1.5 seconds before navigating to the dashboard page
-    setTimeout(() => { this.router.navigate(['/inventory']); }, 1500);
+    setTimeout(() => { this.router.navigate(['/farm']); }, 1500);
     // 1500 milliseconds = 1.5 seconds
 
     // this.router.navigate(['/inventory']); //change to show defaultpage here

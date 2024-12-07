@@ -106,10 +106,9 @@
                     type="date" /> </div>
             <div> <label for="quantity" class="add-harvest-formlabel">Quantity</label> <input id="quantity" class="add-harvest-form" formControlName="quantity"
                     type="number" /> </div>
-            <div> <label for="cropId" class="add-harvest-formlabel">Crop ID</label> <input id="cropId" class="add-harvest-form" formControlName="cropId" type="number" />
-            </div>
-            <div> <label for="farmId" class="add-harvest-formlabel">Farm ID</label> <input id="farmId" class="add-harvest-form" formControlName="farmId" type="number" />
-            </div> <button type="submit"  id="ok" class="add-harvest-formbutton">Add Harvest</button> <button type="button" class="add-harvest-formbutton"
+                    <div> <label for="cropId" class="add-harvest-formlabel">Crop</label> <select id="cropId" class="add-harvest-form" formControlName="cropId"> <option *ngFor="let crop of crops" [value]="crop.id">{{ crop.name }}</option> </select> </div>
+            <!-- <div> <label for="farmId" class="add-harvest-formlabel">Farm ID</label> <input id="farmId" class="add-harvest-form" formControlName="farmId" type="number" /> -->
+             <button type="submit"  id="ok" class="add-harvest-formbutton">Add Harvest</button> <button type="button" class="add-harvest-formbutton"
 
            id="no" (click)="hideAddHarvestForm()">Cancel</button>
         </form>

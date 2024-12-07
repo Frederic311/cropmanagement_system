@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { HarvestService } from '../../services/harvest/harvest.service';
+import { CropService } from '../../services/crop/crop.service';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { MessageService } from 'primeng/api';
@@ -17,13 +18,14 @@ import { ToastModule } from 'primeng/toast';
 })
 export class HarvestComponent implements OnInit {
   harvests: HarvestDTO[] = [];
+  crops: CropDTO[] = [];
   selectedHarvests: number[] = [];
   addHarvestForm: FormGroup;
   showForm: boolean = false;
   isEditMode: boolean = false;
   currentHarvestId: number | null = null;
 
-  constructor(private harvestService: HarvestService, private fb: FormBuilder, private messageService: MessageService) {
+  constructor(private harvestService: HarvestService, private fb: FormBuilder, private messageService: MessageService, private cropService: CropService) {
     this.addHarvestForm = this.fb.group({ title: ['', Validators.required],
       harvestDate: ['', Validators.required],
       quantity: ['', Validators.required],
@@ -31,21 +33,16 @@ export class HarvestComponent implements OnInit {
        farmId: ['', Validators.required] });
   }
 
-  ngOnInit(): void {
-    this.getAllHarvests();
-  }
+  ngOnInit(): void { this.getHarvestsByFarm();
+    this.fetchCrops();
 
-  getAllHarvests(): void {
-    this.harvestService.getHarvests().subscribe(
-      (data: HarvestDTO[]) => {
-        console.log('Harvest data fetched successfully', data);
-        this.harvests = data;
-      },
-      (error) => {
-        console.error('Error fetching harvest data', error);
-      }
-    );
-  }
+   }
+    getHarvestsByFarm(): void { const farmId = localStorage.getItem('farmId');
+       if (farmId) { this.harvestService.getHarvestsByFarm(parseInt(farmId, 10)).subscribe(
+        (data: HarvestDTO[]) => { console.log('Harvest data fetched successfully', data);
+           this.harvests = data; }, (error) => { console.error('Error fetching harvest data', error);
+
+           } ); } else { console.error('No farm ID found in local storage.'); } }
 
   toggleHarvestSelection(harvestId: number, event: Event): void {
     const checkbox = event.target as HTMLInputElement;
@@ -64,6 +61,7 @@ export class HarvestComponent implements OnInit {
     this.showForm = true;
     this.isEditMode = false;
     this.addHarvestForm.reset();
+    const farmId = localStorage.getItem('farmId'); if (farmId) { this.addHarvestForm.patchValue({ farmId: parseInt(farmId, 10) }); }
   }
 
   showEditHarvestForm(harvest: HarvestDTO): void {
@@ -92,7 +90,7 @@ export class HarvestComponent implements OnInit {
           (data) => {
             this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Harvest data updated successfully' });
             console.log('Harvest data updated successfully', data);
-            this.getAllHarvests();
+            this.getHarvestsByFarm();
             this.hideAddHarvestForm();
           },
           (error) => {
@@ -105,7 +103,7 @@ export class HarvestComponent implements OnInit {
           (data) => {
             this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Harvest data saved successfully' });
             console.log('Harvest data added successfully', data);
-            this.getAllHarvests();
+            this.getHarvestsByFarm();
             this.hideAddHarvestForm();
           },
           (error) => {
@@ -119,9 +117,13 @@ export class HarvestComponent implements OnInit {
 
   deleteSelectedHarvests(): void { this.selectedHarvests.forEach((harvestId) => { this.harvestService.deleteHarvest(harvestId).subscribe( () => {
     this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Harvest deleted successfully' });
-    this.getAllHarvests(); }, (error) => { console.error('Error deleting harvest', error);
+    this.getHarvestsByFarm(); }, (error) => { console.error('Error deleting harvest', error);
        this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Error deleting harvest: ' + error.message }); } ); });
        this.selectedHarvests = []; }
+
+
+       fetchCrops(): void { const farmId = localStorage.getItem('farmId'); if (farmId) { this.cropService.getCropsByFarmId(parseInt(farmId, 10)).subscribe( (data: CropDTO[]) => { this.crops = data; }, (error) => { console.error('Error fetching crops:', error); } ); } else { console.error('No farm ID found in local storage.'); } }
+
 
 }
 
@@ -137,3 +139,4 @@ export interface HarvestDTO {
   };
   farmId: number;
 }
+export interface CropDTO { id: number; name: string; description: string; farmId: number; }
