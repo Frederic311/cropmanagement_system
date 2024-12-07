@@ -3,10 +3,10 @@
   <div class="cards">
     <div class="farms-page">
       <div class="farms-container">
-        <div class="farm-card" *ngFor="let farm of farms" (click)="selectFarm(farm.id)">
-          <div class="card-content">
+        <div class="farm-card" *ngFor="let farm of farms" >
+          <div class="card-content" >
             <!-- Image handling has been removed since we're storing images locally -->
-            <div class="text-content">
+            <div class="text-content" (click)="selectFarm(farm.id)">
               <h3>{{ farm.name }}</h3>
               <p>ID: {{ farm.id }}</p>
               <p>Description: {{ farm.description }}</p>
