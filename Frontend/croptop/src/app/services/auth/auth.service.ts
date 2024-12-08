@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 export class AuthService {
 
   // private apiUrl = environment.apiUrl;
-  private base_url= 'http://localhost:8080/api';
+  private base_url= 'http://13.87.131.41/api';
 
   constructor(private http: HttpClient, private router: Router) { }
 
@@ -23,21 +23,21 @@ export class AuthService {
   }
 
   login(authRequest: { email: string, password: string }): Observable<any>
-  { return this.http.post(`http://localhost:8080/api/auth/login`, authRequest).pipe(
+  { return this.http.post(`http://13.87.131.41/api/auth/login`, authRequest).pipe(
      tap((response: any) => { localStorage.setItem('token', response.text); }) ); }
 
   getUserFromToken(token: string): Observable<any> {
     const headers = this.createAuthorizationHeader(token);
-    return this.http.get(`http://localhost:8080/api/auth?token=${token}`, { headers });
+    return this.http.get(`http://13.87.131.41/api/auth?token=${token}`, { headers });
   }
 
   validateToken(token: string): Observable<any> {
     const headers = this.createAuthorizationHeader(token);
-    return this.http.get(`http://localhost:8080/api/auth/validate`, { headers });
+    return this.http.get(`http://13.87.131.41/api/auth/validate`, { headers });
   }
 
   saveUser(userDTO: { fullName: string, email: string, password: string, role: string }): Observable<any> {
-    return this.http.post(`http://localhost:8080/api/auth/add-user`, userDTO);
+    return this.http.post(`http://13.87.131.41/api/auth/add-user`, userDTO);
   }
   logout() {
     localStorage.removeItem('token');
@@ -45,7 +45,7 @@ export class AuthService {
   }
   isLoggedIn(): boolean { return !!localStorage.getItem('token'); }
 
-  
+
 
 }
 

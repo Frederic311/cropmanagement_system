@@ -4,7 +4,7 @@ import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { Farm } from '../../models/farm.model';
 
-const BASE_URL = 'http://localhost:8080/api/farm';
+const BASE_URL = 'http://13.87.131.41//api/farm';
 
 @Injectable({
   providedIn: 'root'

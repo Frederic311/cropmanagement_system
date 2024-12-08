@@ -6,7 +6,7 @@ import { Observable, switchMap } from 'rxjs';
   providedIn: 'root'
 })
 export class CropService {
-  baseUrl: string = "http://localhost:8080/api/crop/"
+  baseUrl: string = "http://13.87.131.41//api/crop/"
 
   token: any = localStorage.getItem('token')
 
@@ -55,15 +55,15 @@ export class CropService {
         if (!this.user || !this.user.id) {
           throw new Error("User ID is not available");
         }
-        return this.http.get(`http://localhost:8080/api/farm/all-farms/${this.user.id}`, { headers });
+        return this.http.get(`http://13.87.131.41//api/farm/all-farms/${this.user.id}`, { headers });
       })
     );
   }
-  
+
 
   getUserFromToken(): Observable<any>{
     const headers = this.createAuthorizationHeader(this.token);
-    return this.http.get("http://localhost:8080/api/auth?token=" + localStorage.getItem("token"), {headers})
-    
+    return this.http.get("http://13.87.131.41/api/auth?token=" + localStorage.getItem("token"), {headers})
+
   }
 }

@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class HarvestService {
-  private apiUrl = 'http://localhost:8080/api/harvest';
+  private apiUrl = 'http://13.87.131.41/api/harvest';
 
   constructor(private http: HttpClient) {}
 
